@@ -1,14 +1,22 @@
 package ifrs.pw2.paulo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Categoria {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
-  private String name;
+  private String nome;
 
   public Categoria() {} 
-  public Categoria(int id, String name) {
+  public Categoria(int id, String nome) {
     this.id = id;
-    this.name = name;
+    this.nome = nome;
   }
 
   public int getId() {
@@ -19,17 +27,17 @@ public class Categoria {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getnome() {
+    return nome;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setnome(String nome) {
+    this.nome = nome;
   }
 
   @Override
   public String toString() {
-    return "Categoria [id=" + id + ", name=" + name + "]";
+    return "Categoria [id=" + id + ", nome=" + nome + "]";
   }
 
 }

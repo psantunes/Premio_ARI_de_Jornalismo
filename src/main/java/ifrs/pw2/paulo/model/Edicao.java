@@ -1,7 +1,17 @@
 package ifrs.pw2.paulo.model;
 
-public class Edicao {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
+@Entity
+public class Edicao extends PanacheEntityBase {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   private int nroEdicao;
   private int ano;
@@ -34,5 +44,5 @@ public class Edicao {
   public String toString() {
     return "Edicao [ano=" + ano + ", id=" + id + ", nroEdicao=" + nroEdicao + "]";
   }
-
+  
 }

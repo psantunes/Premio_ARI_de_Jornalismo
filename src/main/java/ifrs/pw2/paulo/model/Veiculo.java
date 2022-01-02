@@ -1,12 +1,16 @@
 package ifrs.pw2.paulo.model;
 
 import javax.persistence.Entity;
-
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Entity
-public class Veiculo extends PanacheEntity {
+public class Veiculo extends PanacheEntityBase {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   private String nome;
 
@@ -28,4 +32,10 @@ public class Veiculo extends PanacheEntity {
   public void setNome(String nome) {
     this.nome = nome;
   }
+  @Override
+  public String toString() {
+    return "Veiculo [id=" + id + ", nome=" + nome + "]";
+  }
+
+  
 }

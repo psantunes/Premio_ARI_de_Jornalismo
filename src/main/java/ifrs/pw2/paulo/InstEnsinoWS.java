@@ -16,56 +16,56 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import ifrs.pw2.paulo.model.Veiculo;
+import ifrs.pw2.paulo.model.InstEnsino;
 
-@Path("/veiculo")
+@Path("/universidade")
 @Transactional
 @Produces(MediaType.APPLICATION_JSON)
-public class VeiculoWS {
+public class InstEnsinoWS {
 
   @GET
   @Path("/list")
   @Transactional
-  public List<Veiculo> list() {
-      return Veiculo.listAll();
+  public List<InstEnsino> list() {
+      return InstEnsino.listAll();
   }
 
   @GET
   @Path("/list/{id}")
   @Transactional
-  public Veiculo list(@PathParam("id") int id) {
-      return Veiculo.findById(id);
+  public InstEnsino list(@PathParam("id") int id) {
+      return InstEnsino.findById(id);
   }
 
   @POST
   @Path("/save")
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response save(Veiculo veiculo) {
-    veiculo.persist();
-    return Response.created(URI.create("/veiculo/" + veiculo.getId())).build();
+  public Response save(InstEnsino instEnsino) {
+    instEnsino.persist();
+    return Response.created(URI.create("/instEnsino/" + instEnsino.getId())).build();
   }
 
   @PUT
   @Path("/{id}")
   @Transactional
-  public Response update(@PathParam("id") int id, Veiculo veiculo) {
-    Veiculo veiculoAtualizado = Veiculo.findById(id);
-    if(veiculoAtualizado == null) {
+  public Response update(@PathParam("id") int id, InstEnsino instEnsino) {
+    InstEnsino instEnsinoAtualizada = InstEnsino.findById(id);
+    if(instEnsinoAtualizada == null) {
         return Response.ok("Instituição de ensino não encontrada").type(MediaType.APPLICATION_JSON_TYPE).build();
     }
-    veiculoAtualizado.setNome(veiculo.getNome());
-    return Response.created(URI.create("/veiculo/" + veiculoAtualizado.getId())).build();
+    instEnsinoAtualizada.setNome(instEnsino.getNome());
+    return Response.created(URI.create("/instEnsino/" + instEnsinoAtualizada.getId())).build();
 }
 
   @DELETE
   @Path("/delete/{id}")
   @Transactional
   public void delete(@PathParam("id") int id) {
-    Veiculo veiculo = Veiculo.findById(id);
-        if(veiculo == null) {
+    InstEnsino instEnsino = InstEnsino.findById(id);
+        if(instEnsino == null) {
             throw new NotFoundException();
         }
-        veiculo.delete();
+        instEnsino.delete();
     }
 
 }
