@@ -9,26 +9,26 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import ifrs.pw2.paulo.model.InstEnsino;
+import ifrs.pw2.paulo.model.Edicao;
 
-@Path("/universidade")
+@Path("/edicao")
 @Transactional
 @Produces(MediaType.APPLICATION_JSON)
-public class InstEnsinoWS {
-
+public class EdicaoWS {
+ 
   /** READ */
   @GET
   @Path("/list/{id}")
   @Transactional
-  public InstEnsino list(@PathParam("id") int id) {
-      return InstEnsino.findById(id);
+  public Edicao list(@PathParam("id") int id) {
+      return Edicao.findById(id);
   }
 
   /** READ ALL */
   @GET
   @Path("/list")
   @Transactional
-  public List<InstEnsino> list() {
-      return InstEnsino.listAll();
+  public List<Edicao> list() {
+      return Edicao.listAll();
   }
 }

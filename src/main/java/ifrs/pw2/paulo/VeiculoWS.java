@@ -23,20 +23,7 @@ import ifrs.pw2.paulo.model.Veiculo;
 @Produces(MediaType.APPLICATION_JSON)
 public class VeiculoWS {
 
-  @GET
-  @Path("/list")
-  @Transactional
-  public List<Veiculo> list() {
-      return Veiculo.listAll();
-  }
-
-  @GET
-  @Path("/list/{id}")
-  @Transactional
-  public Veiculo list(@PathParam("id") int id) {
-      return Veiculo.findById(id);
-  }
-
+  /** CREATE */
   @POST
   @Path("/save")
   @Consumes(MediaType.APPLICATION_JSON)
@@ -45,6 +32,23 @@ public class VeiculoWS {
     return Response.created(URI.create("/veiculo/" + veiculo.getId())).build();
   }
 
+  /** READ */
+  @GET
+  @Path("/list")
+  @Transactional
+  public List<Veiculo> list() {
+      return Veiculo.listAll();
+  }
+
+  /** READ ALL */
+  @GET
+  @Path("/list/{id}")
+  @Transactional
+  public Veiculo list(@PathParam("id") int id) {
+      return Veiculo.findById(id);
+  }
+ 
+  /** UPDATE */
   @PUT
   @Path("/{id}")
   @Transactional
@@ -57,6 +61,7 @@ public class VeiculoWS {
     return Response.created(URI.create("/veiculo/" + veiculoAtualizado.getId())).build();
 }
 
+  /** DELETE */
   @DELETE
   @Path("/delete/{id}")
   @Transactional

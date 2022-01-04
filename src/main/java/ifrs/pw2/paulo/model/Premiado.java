@@ -10,7 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
@@ -34,13 +35,13 @@ public class Premiado extends PanacheEntityBase {
   private Categoria categoria;
   private Colocacao colocacao;
 
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  @JoinColumn(name = "autor_id")
+  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JoinTable(name="Premiado_Autor", joinColumns={@JoinColumn(name="premiado_id")}, inverseJoinColumns={@JoinColumn(name="autor_id")})
   private List<Autor> autores;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "veiculo_id")
-  private Veiculo veiculo;
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name="Premiado_Veiculo", joinColumns={@JoinColumn(name="premiado_id")}, inverseJoinColumns={@JoinColumn(name="veiculo_id")})
+  private List<Veiculo> veiculos;
 
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "instensino_id")
@@ -50,14 +51,14 @@ public class Premiado extends PanacheEntityBase {
     this.autores = new ArrayList<>();
   }
   public Premiado(String nome, String link, Edicao edicao, Categoria categoria, String colocacao, List<Autor> autores,
-      Veiculo veiculo, InstEnsino instEnsino) {
+    List<Veiculo> veiculos, InstEnsino instEnsino) {
     this.nome = nome;
     this.link = link;
     this.edicao = edicao;
     this.categoria = categoria;
     this.colocacao = Colocacao.valueOf(colocacao);
     this.autores = autores;
-    this.veiculo = veiculo;
+    this.veiculos = veiculos;
     this.instEnsino = instEnsino;
   }
 
@@ -106,11 +107,12 @@ public class Premiado extends PanacheEntityBase {
   public void setAutores(List<Autor> autores) {
     this.autores = autores;
   }
-  public Veiculo getVeiculo() {
-    return veiculo;
+
+  public List<Veiculo> getVeiculos() {
+    return veiculos;
   }
-  public void setVeiculo(Veiculo veiculo) {
-    this.veiculo = veiculo;
+  public void setVeiculos(List<Veiculo> veiculos) {
+    this.veiculos = veiculos;
   }
   public InstEnsino getInstEnsino() {
     return instEnsino;
@@ -121,8 +123,8 @@ public class Premiado extends PanacheEntityBase {
   @Override
   public String toString() {
     return "Premiado [autores=" + autores + ", categoria=" + categoria + ", colocacao=" + colocacao + ", edicao="
-        + edicao + ", id=" + id + ", instEnsino=" + instEnsino + ", link=" + link + ", nome=" + nome + ", veiculo="
-        + veiculo + "]";
+        + edicao + ", id=" + id + ", instEnsino=" + instEnsino + ", link=" + link + ", nome=" + nome + ", veiculos="
+        + veiculos + "]";
   }
   
 }
