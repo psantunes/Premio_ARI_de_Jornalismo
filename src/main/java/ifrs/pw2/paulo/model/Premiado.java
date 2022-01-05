@@ -1,11 +1,12 @@
 package ifrs.pw2.paulo.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,8 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.orm.runtime.Hibernate;
 
 @Entity
 public class Premiado extends PanacheEntityBase {
@@ -33,33 +39,25 @@ public class Premiado extends PanacheEntityBase {
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "categoria_id")
   private Categoria categoria;
+
+  @Enumerated(EnumType.STRING)
   private Colocacao colocacao;
 
-  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  @JoinTable(name="Premiado_Autor", joinColumns={@JoinColumn(name="premiado_id")}, inverseJoinColumns={@JoinColumn(name="autor_id")})
-  private List<Autor> autores;
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JsonManagedReference
+  private Set<Autor> autores;
 
   @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name="Premiado_Veiculo", joinColumns={@JoinColumn(name="premiado_id")}, inverseJoinColumns={@JoinColumn(name="veiculo_id")})
-  private List<Veiculo> veiculos;
+  @JsonBackReference
+  private Set<Veiculo> veiculos;
 
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "instensino_id")
   private InstEnsino instEnsino;
  
-  public Premiado() {
-    this.autores = new ArrayList<>();
-  }
-  public Premiado(String nome, String link, Edicao edicao, Categoria categoria, String colocacao, List<Autor> autores,
-    List<Veiculo> veiculos, InstEnsino instEnsino) {
-    this.nome = nome;
-    this.link = link;
-    this.edicao = edicao;
-    this.categoria = categoria;
-    this.colocacao = Colocacao.valueOf(colocacao);
-    this.autores = autores;
-    this.veiculos = veiculos;
-    this.instEnsino = instEnsino;
+  public Premiado() { 
+    autores = new HashSet<>();
+    veiculos = new HashSet<>();
   }
 
   public int getId() {
@@ -101,19 +99,22 @@ public class Premiado extends PanacheEntityBase {
     this.colocacao = colocacao;
   }
 
-  public List<Autor> getAutores() {
+  public Set<Autor> getAutores() {
     return autores;
   }
-  public void setAutores(List<Autor> autores) {
+
+  public void setAutores(Set<Autor> autores) {
     this.autores = autores;
   }
 
-  public List<Veiculo> getVeiculos() {
+  public Set<Veiculo> getVeiculos() {
     return veiculos;
   }
-  public void setVeiculos(List<Veiculo> veiculos) {
+
+  public void setVeiculos(Set<Veiculo> veiculos) {
     this.veiculos = veiculos;
   }
+
   public InstEnsino getInstEnsino() {
     return instEnsino;
   }

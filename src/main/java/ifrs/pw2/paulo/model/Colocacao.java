@@ -2,20 +2,20 @@ package ifrs.pw2.paulo.model;
 
 public enum Colocacao {
   PRIMEIRO_LUGAR("1º lugar"),
-  SEGUNDOO_LUGAR("2º lugar"),
+  SEGUNDO_LUGAR("2º lugar"),
   TERCEIRO_LUGAR("3º lugar"),
   QUARTO_LUGAR("4º lugar"),
   MENCAO_HONROSA("Menção Honrosa"),
   PREMIO_ADICIONAL("Prêmio adicional");
   
-  private final String nrColocacao;
+  private final String colocacao;
 
-  private Colocacao(String nrColocacao) {
-    this.nrColocacao = nrColocacao;
+  private Colocacao(String colocacao) {
+    this.colocacao = colocacao;
   }
 
-  public String getNrColocacao() {
-    return nrColocacao;
+  public String getColocacao() {
+    return colocacao;
   }
 
   

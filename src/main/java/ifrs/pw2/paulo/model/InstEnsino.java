@@ -16,10 +16,7 @@ public class InstEnsino extends PanacheEntityBase  {
   private String nome;
 
   public InstEnsino() {}
-  public InstEnsino(int id, String nome) {
-    this.id = id;
-    this.nome = nome;
-  }
+
   public int getId() {
     return id;
   }
@@ -32,9 +29,10 @@ public class InstEnsino extends PanacheEntityBase  {
   public void setNome(String nome) {
     this.nome = nome;
   }
+
   @Override
   public String toString() {
     return "InstEnsino [id=" + id + ", nome=" + nome + "]";
   }
-  
+ 
 }

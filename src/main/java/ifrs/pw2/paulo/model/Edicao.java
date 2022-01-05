@@ -17,11 +17,8 @@ public class Edicao extends PanacheEntityBase {
   private int ano;
 
   public Edicao() {}
-  public Edicao(int id, int nroEdicao, int ano) {
-    this.id = id;
-    this.nroEdicao = nroEdicao;
-    this.ano = ano;
-  }
+
+
   public int getId() {
     return id;
   }

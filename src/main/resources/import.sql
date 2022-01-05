@@ -1,6 +1,12 @@
 INSERT INTO Edicao VALUES (default, 1, 1958);
 INSERT INTO Edicao VALUES (default, 2, 1959);
 
+INSERT INTO InstEnsino VALUES (default, "UFRGS");
+INSERT INTO InstEnsino VALUES (default, "PUCRS");
+INSERT INTO InstEnsino VALUES (default, "Uniritter");
+INSERT INTO InstEnsino VALUES (default, "Unisinos");
+INSERT INTO InstEnsino VALUES (default, "ESPM");
+
 INSERT INTO Veiculo VALUES (default, 'Correio do Povo');
 INSERT INTO Veiculo VALUES (default,'Diário de Notícias');
 INSERT INTO Veiculo VALUES (default,'Folha da Tarde');
@@ -30,3 +36,12 @@ INSERT INTO Autor VALUES (DEFAULT,'Raul Castilhos');
 INSERT INTO Autor VALUES (DEFAULT,'Amaro Junior');
 INSERT INTO Autor VALUES (DEFAULT,'Homero Pinto Guerreiro');
 INSERT INTO Autor VALUES (DEFAULT,'José Abraham');
+
+INSERT INTO Premiado (id, nome, edicao_id, colocacao, categoria_id) VALUES (DEFAULT,'O rio que não é rio',1,"PRIMEIRO_LUGAR",1);
+INSERT INTO Premiado_Autor(premiados_id, autores_id) VALUES (1, 1);
+INSERT INTO Premiado_Veiculo(premiados_id, veiculos_id) VALUES (1, 1);
+
+INSERT INTO Premiado (id, nome, edicao_id, colocacao, categoria_id) VALUES (DEFAULT,'O que deve a Santa Casa cabe a todos nós saldar',1,"SEGUNDO_LUGAR",1);
+INSERT INTO Premiado_Autor(premiados_id, autores_id) VALUES (2, 2);
+INSERT INTO Premiado_Veiculo(premiados_id, veiculos_id) VALUES (2, 1);
+

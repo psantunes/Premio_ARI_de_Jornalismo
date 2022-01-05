@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 @Entity
-public class Categoria {
+public class Categoria extends PanacheEntityBase {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,19 +16,13 @@ public class Categoria {
   private String nome;
 
   public Categoria() {} 
-  public Categoria(int id, String nome) {
-    this.id = id;
-    this.nome = nome;
-  }
 
   public int getId() {
     return id;
   }
-
   public void setId(int id) {
     this.id = id;
   }
-
   public String getnome() {
     return nome;
   }
@@ -34,10 +30,10 @@ public class Categoria {
   public void setnome(String nome) {
     this.nome = nome;
   }
-
   @Override
   public String toString() {
     return "Categoria [id=" + id + ", nome=" + nome + "]";
   }
 
+ 
 }
