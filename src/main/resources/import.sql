@@ -1,5 +1,8 @@
-INSERT INTO Edicao VALUES (default, 1, 1958);
-INSERT INTO Edicao VALUES (default, 2, 1959);
+
+INSERT INTO User VALUES (default, "admin@admin.com", "123456");
+
+INSERT INTO Edicao(id, nroEdicao, ano) VALUES (default, 1, 1958);
+INSERT INTO Edicao(id, nroEdicao, ano) VALUES (default, 2, 1959);
 
 INSERT INTO InstEnsino VALUES (default, "UFRGS");
 INSERT INTO InstEnsino VALUES (default, "PUCRS");
@@ -37,6 +40,7 @@ INSERT INTO Autor VALUES (DEFAULT,'Amaro Junior');
 INSERT INTO Autor VALUES (DEFAULT,'Homero Pinto Guerreiro');
 INSERT INTO Autor VALUES (DEFAULT,'José Abraham');
 
+/* PREMIADOS EDICAO 1 */
 INSERT INTO Premiado (id, nome, edicao_id, colocacao, categoria_id) VALUES (DEFAULT,'O rio que não é rio',1,"PRIMEIRO_LUGAR",1);
 INSERT INTO Premiado_Autor(premiados_id, autores_id) VALUES (1, 1);
 INSERT INTO Premiado_Veiculo(premiados_id, veiculos_id) VALUES (1, 1);
@@ -45,3 +49,8 @@ INSERT INTO Premiado (id, nome, edicao_id, colocacao, categoria_id) VALUES (DEFA
 INSERT INTO Premiado_Autor(premiados_id, autores_id) VALUES (2, 2);
 INSERT INTO Premiado_Veiculo(premiados_id, veiculos_id) VALUES (2, 1);
 
+/* PREMIADOS EDICAO 2 */
+
+INSERT INTO Premiado (id, nome, edicao_id, colocacao, categoria_id) VALUES (DEFAULT,'Maria reflete na vidraça o drama da cidade grande',2,"SEGUNDO_LUGAR",3);
+INSERT INTO Premiado_Autor(premiados_id, autores_id) VALUES (3, 15);
+INSERT INTO Premiado_Veiculo(premiados_id, veiculos_id) VALUES (3, 3);

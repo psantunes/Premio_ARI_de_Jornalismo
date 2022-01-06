@@ -11,16 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import io.quarkus.hibernate.orm.runtime.Hibernate;
 
 @Entity
 public class Premiado extends PanacheEntityBase {
@@ -44,7 +41,8 @@ public class Premiado extends PanacheEntityBase {
   private Colocacao colocacao;
 
   @ManyToMany(cascade = CascadeType.ALL)
-  @JsonManagedReference
+  /*@JsonManagedReference */
+  @JsonBackReference 
   private Set<Autor> autores;
 
   @ManyToMany(cascade = CascadeType.ALL)
