@@ -24,7 +24,6 @@ public class Autor extends PanacheEntityBase {
   private String nome;
 
   @ManyToMany(mappedBy = "autores", fetch = FetchType.EAGER)
-  /*@JsonManagedReference */
   @JsonBackReference
   private Set<Premiado> premiados;
 

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
@@ -23,7 +24,7 @@ public class Veiculo extends PanacheEntityBase {
   private String nome;
 
   @ManyToMany(mappedBy = "veiculos", fetch = FetchType.EAGER)
-  @JsonManagedReference
+  @JsonBackReference
   private Set<Premiado> premiados;
 
   public Veiculo() {

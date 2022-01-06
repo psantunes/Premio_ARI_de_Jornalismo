@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,13 +41,12 @@ public class Premiado extends PanacheEntityBase {
   @Enumerated(EnumType.STRING)
   private Colocacao colocacao;
 
-  @ManyToMany(cascade = CascadeType.ALL)
-  /*@JsonManagedReference */
-  @JsonBackReference 
+  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JsonManagedReference 
   private Set<Autor> autores;
 
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JsonBackReference
+  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JsonManagedReference
   private Set<Veiculo> veiculos;
 
   @OneToOne(cascade = CascadeType.ALL)
