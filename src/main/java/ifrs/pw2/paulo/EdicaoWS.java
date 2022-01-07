@@ -31,4 +31,5 @@ public class EdicaoWS {
   public List<Edicao> list() {
       return Edicao.listAll();
   }
+
 }

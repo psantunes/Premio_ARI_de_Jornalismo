@@ -1,7 +1,12 @@
 package ifrs.pw2.paulo;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -72,5 +77,23 @@ public class VeiculoWS {
         }
         veiculo.delete();
     }
+
+      /** RANKING */
+  @GET
+  @Path("/ranking")
+  @Transactional
+  public List<Entry<String, Integer>> ranking_por_veiculo() {
+
+    Map<String, Integer> iteraLista = new LinkedHashMap<String, Integer>();
+    List<Veiculo> lista = Veiculo.listAll();
+    for(Veiculo veiculo : lista) {
+      iteraLista.put(veiculo.getNome(),veiculo.getPremiados().size());
+    }
+
+    List<Entry<String, Integer>> listaRankeada = new ArrayList<>(iteraLista.entrySet());
+		listaRankeada.sort(Entry.comparingByValue());
+    Collections.reverse(listaRankeada);
+    return listaRankeada;
+  }
 
 }

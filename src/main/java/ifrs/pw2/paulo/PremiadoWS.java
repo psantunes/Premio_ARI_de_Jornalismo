@@ -21,7 +21,7 @@ public class PremiadoWS {
   @Path("/list/{id}")
   @Transactional
   public Premiado list(@PathParam("id") int id) {
-      return Premiado.findById(id);
+    return Premiado.findById(id);
   }
 
   /** READ ALL */
@@ -31,4 +31,23 @@ public class PremiadoWS {
   public List<Premiado> list() {
     return Premiado.listAll();
   }
+
+  /** PREMIADOS POR ANO */
+  @GET
+  @Path("/ano/{ano}")
+  @Transactional
+  public List<Premiado> premios_por_ano(@PathParam("ano") int ano) {
+    List<Premiado> lista = Premiado.list("edicao.ano", ano);
+    return lista;
+  }
+  
+  /** BUSCA PRÊMIOS POR AUTOR */
+  @GET
+  @Path("/autor/{id}")
+  @Transactional
+  public List<Premiado> premios_por_autor(@PathParam("id") int id) {
+    List<Premiado> lista = Premiado.list("autores", id);
+    return lista;
+  }
+  
 }

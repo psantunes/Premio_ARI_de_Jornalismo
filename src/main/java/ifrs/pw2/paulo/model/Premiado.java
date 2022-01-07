@@ -15,8 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
@@ -42,11 +41,11 @@ public class Premiado extends PanacheEntityBase {
   private Colocacao colocacao;
 
   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  @JsonManagedReference 
+  @JsonIgnoreProperties("premiados")
   private Set<Autor> autores;
 
   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  @JsonManagedReference
+  @JsonIgnoreProperties("premiados")
   private Set<Veiculo> veiculos;
 
   @OneToOne(cascade = CascadeType.ALL)
